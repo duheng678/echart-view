@@ -3,7 +3,7 @@
         <div class="view">
             <el-card shadow="hover">
                 <template v-slot:header>
-                    <div class="title">关键词搜索</div>
+                    <div class="title-wrapper">关键词搜索</div>
                 </template>
                 <template>
                     <div class="chart-wrapper">
@@ -54,7 +54,9 @@
                     </div>
                 </template>
                 <template>
-                    <v-chart :option="categoryOption"></v-chart>
+                    <div class="chart-wrapper">
+                        <v-chart :option="categoryOption"></v-chart>
+                    </div>
                 </template>
             </el-card>
         </div>
@@ -154,6 +156,139 @@ export default {
             radioSelect: '品类',
             categoryOption: {},
         };
+    },
+    mounted() {
+        this.renderPieChart();
+    },
+    methods: {
+        renderPieChart() {
+            const mockData = [
+                {
+                    legendName: '粉面粥店',
+                    value: 67,
+                    percent: '15.40%',
+                    name: '粉面粥店 | 15.40%',
+                    itemStyle: {
+                        color: '#e7e702',
+                    },
+                },
+                {
+                    legendName: '简餐便当',
+                    value: 97,
+                    percent: '22.30%',
+                    name: '简餐便当 | 22.30%',
+
+                    itemStyle: {
+                        color: '#8d7fec',
+                    },
+                },
+                {
+                    legendName: '汉堡披萨',
+                    value: 92,
+                    percent: '21.15%',
+                    name: '汉堡披萨 | 21.15%',
+
+                    itemStyle: {
+                        color: '#5085f2',
+                    },
+                },
+                {
+                    legendName: '粉面粥店',
+                    value: 66,
+                    percent: '15.4%',
+                    name: '简餐便当 | 22.30%',
+
+                    itemStyle: {
+                        color: '#45c946',
+                    },
+                },
+            ];
+            this.categoryOption = {
+                title: [
+                    {
+                        text: '品类分布',
+                        textStyle: {
+                            fontSize: 14,
+                            color: '#666',
+                        },
+                        left: 20,
+                        top: 20,
+                    },
+                    {
+                        text: '累计订单量',
+                        subtext: '320',
+                        x: '34.5%',
+                        y: '46%',
+                        textAlign: 'center',
+                        textStyle: {
+                            fontSize: 14,
+                            color: '#999',
+                        },
+                        subtextStyle: {
+                            fontSize: 28,
+                            color: '#333',
+                        },
+                    },
+                ],
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    height: 250,
+                    left: '70%',
+                    top: 'middle',
+                    textStyle: {
+                        color: '#8c8c8c',
+                    },
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function (params) {
+                        const str =
+                            params.seriesName +
+                            '<br/>' +
+                            params.marker +
+                            params.data.legendName +
+                            '<br/>' +
+                            '数量:' +
+                            params.data.value +
+                            '<br/>' +
+                            '占比:' +
+                            params.data.percent;
+                        return str;
+                    },
+                },
+                series: [
+                    {
+                        name: '品类分布',
+                        type: 'pie',
+                        data: mockData,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'outer',
+                                formatter: function (params) {
+                                    return `${params.data.legendName}|${params.data.percent}`;
+                                },
+                            },
+                        },
+                        center: ['35%', '50%'],
+                        radius: ['45%', '60%'],
+                        labelLine: {
+                            normal: {
+                                length: 5,
+                                length2: 3,
+                                smooth: true,
+                            },
+                        },
+                        clockwise: false,
+                        itemStyle: {
+                            borderWidth: 4,
+                            borderColor: '#fff',
+                        },
+                    },
+                ],
+            };
+        },
     },
 };
 </script>
