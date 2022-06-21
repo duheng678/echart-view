@@ -3,7 +3,7 @@
         <common-card title="累计用户数" value="88，888，888">
             <template>
                 <!-- <div id="total-users-chart" :style="{ width: '100%', height: '100%' }"></div> -->
-                <v-chart :option="getOptions()"></v-chart>
+                <v-chart :options="getOptions()"></v-chart>
             </template>
             <template v-slot:footer>
                 <div class="total-users-footer">
@@ -64,7 +64,7 @@ export default {
                     },
                     {
                         type: 'custom',
-                        // stack: '总量',
+                        stack: '总量',
                         data: [200],
                         renderItem: (params, api) => {
                             console.log(params, api);
@@ -120,6 +120,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.echarts {
+    width: 100%;
+    height: 100%;
+}
 .total-users-footer {
     display: flex;
     align-items: center;

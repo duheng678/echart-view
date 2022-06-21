@@ -3,7 +3,7 @@
         <common-card title="今日交易用户数" value="66,666">
             <template>
                 <!-- <div id="today-users-chart" :style="{ width: '100%', height: '100%' }"></div> -->
-                <v-chart :option="getOptions()"></v-chart>
+                <v-chart :options="getOptions()"></v-chart>
             </template>
             <template v-slot:footer>
                 <span>退货率</span>
@@ -63,6 +63,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.echarts {
+    width: 100%;
+    height: 100%;
+}
 span {
     font-size: 12px;
 }

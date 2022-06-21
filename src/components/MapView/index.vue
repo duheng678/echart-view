@@ -1,25 +1,75 @@
 <template>
-    <div>
-        <ve-line :data="chartData"></ve-line>
+    <div class="map-view">
+        <div class="left">
+            <b-map-scatter />
+        </div>
+        <div class="right">
+            <el-card shadow="hover">
+                <template v-slot:header>
+                    <div class="title">用户月同比增长</div>
+                </template>
+                <template>
+                    <div class="chart-wrapper">
+                        <liquid-fill />
+                    </div>
+                </template>
+            </el-card>
+            <el-card shadow="hover">
+                <template v-slot:header>
+                    <div class="title">热门搜索</div>
+                </template>
+                <template>
+                    <div class="chart-wrapper">
+                        <word-cloud />
+                    </div>
+                </template>
+            </el-card>
+        </div>
     </div>
 </template>
 
 <script>
+import BMapScatter from '../BMap-VE';
+import LiquidFill from '../LiquidFill';
+import WordCloud from '../WordCloud';
 export default {
-    data() {
-        return {
-            chartData: {
-                columns: ['date', 'PV'],
-                rows: [
-                    { date: '01-01', PV: 1231 },
-                    { date: '01-02', PV: 1223 },
-                    { date: '01-03', PV: 2123 },
-                    { date: '01-04', PV: 4123 },
-                    { date: '01-05', PV: 3123 },
-                    { date: '01-06', PV: 7123 },
-                ],
-            },
-        };
+    components: {
+        BMapScatter,
+        LiquidFill,
+        WordCloud,
     },
 };
 </script>
+
+<style lang="less" scoped>
+.map-view {
+    display: flex;
+    margin-top: 20px;
+    .left {
+        flex: 0 0 80%;
+        width: 80%;
+        height: 600px;
+    }
+    .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 20px;
+        .title {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 0 0 0 20px;
+        }
+        .chart-wrapper {
+            width: 100%;
+            height: 190px;
+        }
+    }
+}
+</style>

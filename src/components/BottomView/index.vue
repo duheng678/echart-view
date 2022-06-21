@@ -11,13 +11,13 @@
                             <div class="chart">
                                 <div class="chart-title">搜索用户数</div>
                                 <div class="chart-data">66，666</div>
-                                <v-chart :option="searchUserOption"></v-chart>
+                                <v-chart :options="searchUserOption"></v-chart>
                             </div>
 
                             <div class="chart">
                                 <div class="chart-title">搜索量</div>
                                 <div class="chart-data">88，888</div>
-                                <v-chart :option="searchNumberOption"></v-chart>
+                                <v-chart :options="searchNumberOption"></v-chart>
                             </div>
                         </div>
                         <div class="table-wrapper">
@@ -33,7 +33,6 @@
                                 :total="100"
                                 :page-size="4"
                                 background
-                                @current-change="onPageChange"
                             ></el-pagination>
                         </div>
                     </div>
@@ -55,7 +54,7 @@
                 </template>
                 <template>
                     <div class="chart-wrapper">
-                        <v-chart :option="categoryOption"></v-chart>
+                        <v-chart :options="categoryOption"></v-chart>
                     </div>
                 </template>
             </el-card>
@@ -294,6 +293,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.echarts {
+    width: 100%;
+    height: 100%;
+}
 .bottom-view {
     display: flex;
     margin-top: 20px;

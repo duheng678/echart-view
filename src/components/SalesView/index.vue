@@ -21,7 +21,7 @@
                         </el-radio-group>
                         <el-date-picker
                             type="daterange"
-                            v-model="date"
+                            v-model="dateInfo"
                             range-separator="至"
                             start-placeholder="开始日期"
                             end-placeholder="结束日期"
@@ -35,7 +35,7 @@
             </template>
             <template>
                 <div class="sales-view-chart-wrapper">
-                    <v-chart :option="chartOption" />
+                    <v-chart :options="chartOption" />
                     <div class="sales-view-list">
                         <div class="sales-view-title">排行榜</div>
                         <div class="list-item-wrapper">
@@ -65,7 +65,7 @@ export default {
         return {
             activeIndex: '1',
             radioSelect: '今日',
-            date: null,
+            dateInfo: '',
             pickerOptions: {
                 shortcuts: [
                     {
@@ -219,6 +219,10 @@ export default {
 </script>
 
 <style scoped lang="less">
+.echarts {
+    width: 100%;
+    height: 100%;
+}
 .sales-view {
     margin-top: 20px;
     .menu-wrapper {

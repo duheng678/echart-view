@@ -2,7 +2,7 @@
     <div>
         <common-card title="累计订单量" value="2,157,420">
             <template>
-                <v-chart :option="getOptions()" />
+                <v-chart :options="getOptions()" />
                 <!-- <div id="total-orders-chart"></div> -->
             </template>
             <template v-slot:footer>
@@ -52,6 +52,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.echarts {
+    width: 100%;
+    height: 100%;
+}
 #total-orders-chart {
     height: 100%;
     width: 100%;
